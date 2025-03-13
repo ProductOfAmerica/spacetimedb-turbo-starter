@@ -8,6 +8,8 @@ catalog:
   next: 15.2.2
   '@types/node': ^22.10.2
 catalogs:
+  spacetimedb:
+    '@clockworklabs/spacetimedb-sdk': ^1.0.2
   react18:
     react: ^19.0.0
     react-dom: ^19.0.0

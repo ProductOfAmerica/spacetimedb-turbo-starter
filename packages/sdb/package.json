@@ -9,17 +9,16 @@
 		"./*": "./spacetime-autogen/*"
 	},
 	"scripts": {
-		"spacetime": "spacetime start",
+		"spacetime:cli": "spacetime start",
 		"spacetime:docker": "docker run -d --rm --pull always -p 3000:3000 clockworklabs/spacetime start",
-		"bpg": "pnpm run build && pnpm run publish:local && pnpm run generate",
-		"build": "spacetime build",
-		"publish:local": "spacetime publish --server local sdb",
-		"publish:cloud": "spacetime login && spacetime publish sdb",
-		"generate": "spacetime generate --lang typescript --out-dir ./spacetime-autogen && biome check ./spacetime-autogen --write",
+		"spacetime:build": "spacetime build",
+		"spacetime:generate": "spacetime generate --bin-path ./target/wasm32-unknown-unknown/release/spacetime_module.wasm --lang typescript --out-dir ./spacetime-autogen && biome check ./spacetime-autogen --write",
+		"spacetime:publish:local": "spacetime publish --bin-path ./target/wasm32-unknown-unknown/release/spacetime_module.wasm --server local sdb",
+		"spacetime:publish:cloud": "spacetime login && spacetime publish --bin-path ./target/wasm32-unknown-unknown/release/spacetime_module.wasm sdb",
 		"logs": "spacetime logs sdb",
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@clockworklabs/spacetimedb-sdk": "^1.0.2"
+		"@clockworklabs/spacetimedb-sdk": "catalog:spacetimedb"
 	}
 }

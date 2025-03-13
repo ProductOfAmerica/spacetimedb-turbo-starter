@@ -10,19 +10,24 @@
 		"dev": {
 			"cache": false,
 			"persistent": true,
-			"dependsOn": ["^bpg"]
+			"dependsOn": ["^spacetime:publish:local"]
 		},
-		"bpg": {
-			"cache": true,
+		"spacetime:publish:local": {
+			"cache": false,
+			"dependsOn": ["spacetime:generate"],
+			"inputs": ["spacetime-autogen/**/*.ts"]
+		},
+		"spacetime:generate": {
+			"dependsOn": ["spacetime:build"],
+			"inputs": ["target/**"],
+			"outputs": ["spacetime-autogen/**/*.ts"]
+		},
+		"spacetime:build": {
 			"inputs": ["src/**/*.rs", "Cargo.toml", "Cargo.lock"],
-			"outputs": ["target/**", "spacetime-autogen/**/*.ts"]
+			"outputs": ["target/**"]
 		},
 		"check-types": {
 			"dependsOn": ["^check-types"]
-		},
-		"publish": {
-			"dependsOn": ["build"],
-			"cache": false
 		},
 		"//#format-write": { "cache": false },
 		"//#lint": {},

@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"@repo/sdb": "workspace:*",
-		"@clockworklabs/spacetimedb-sdk": "^1.0.2",
+		"@clockworklabs/spacetimedb-sdk": "catalog:spacetimedb",
 		"@repo/ui": "workspace:*",
 		"next": "catalog:",
 		"react": "catalog:react18",

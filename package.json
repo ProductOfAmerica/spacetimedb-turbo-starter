@@ -2,7 +2,7 @@
 	"name": "spacetimedb-turbo-starter",
 	"private": true,
 	"scripts": {
-		"spacetime:cli": "pnpm --filter sdb spacetime",
+		"spacetime:cli": "pnpm --filter sdb spacetime:cli",
 		"spacetime:docker": "pnpm --filter sdb spacetime:docker",
 		"dev": "turbo dev",
 		"build": "turbo build",
@@ -12,7 +12,8 @@
 		"lint:fix": "biome check . --write",
 		"check-types": "turbo check-types",
 		"docker": "docker-compose down --remove-orphans --volumes && docker container prune -f && docker-compose up --build -d",
-		"docker:build": "docker-compose -f docker-compose.yml build"
+		"docker:build": "docker-compose -f docker-compose.yml build",
+		"postinstall": "turbo run spacetime:generate"
 	},
 	"devDependencies": {
 		"@repo/ts-config": "workspace:*",

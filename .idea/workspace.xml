@@ -5,41 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8921b86c-cacd-4b65-bd8d-eab2c1174245" name="Changes" comment="Moved apps/server to packages/sdb. Hooked up basic client.">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/client_connected_reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/identity_disconnected_reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/message_table.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/message_type.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/send_message_reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/set_name_reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/user_table.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/spacetime-autogen/user_type.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdb/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spacetimedb-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spacetimedb-turbo-starter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdb/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdb/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdb/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/src/app/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/page.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biome.json" beforeDir="false" afterPath="$PROJECT_DIR$/biome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/typescript-config/base.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ts-config/base.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/typescript-config/nextjs.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ts-config/nextjs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/typescript-config/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ts-config/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/typescript-config/react-library.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ts-config/react-library.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdb/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdb/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/turbo.json" beforeDir="false" afterPath="$PROJECT_DIR$/turbo.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,21 +18,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ProductOfAmerica"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ProductOfAmerica&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ProductOfAmerica/spacetimedb-turbo-starter.git",
-    "accountId": "db30d5c6-a44d-4544-8b92-04400513947f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ProductOfAmerica/spacetimedb-turbo-starter.git&quot;,
+    &quot;accountId&quot;: &quot;db30d5c6-a44d-4544-8b92-04400513947f&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2uFmLdICAzMAayZxhE0VomJxQ3W" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -72,36 +40,59 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "javascript.nodejs.core.library.configured.version": "22.14.0",
-    "javascript.nodejs.core.library.typings.version": "22.13.10",
-    "last_opened_file_path": "C:/Users/eelwo/GitHub/spacetimedb-turbo-starter",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "npm.dev.executor": "Run",
-    "npm.spacetime:cli.executor": "Run",
-    "npm.spacetime:docker.executor": "Run",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "project.scopes",
-    "ts.external.directory.path": "C:\\Users\\eelwo\\GitHub\\spacetimedb-turbo-starter\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.14.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.13.10&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/eelwo/GitHub/spacetimedb-turbo-starter&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.sdb &gt; logs.executor&quot;: &quot;Run&quot;,
+    &quot;npm.sdb &gt; spacetime:build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.sdb &gt; spacetime:generate.executor&quot;: &quot;Run&quot;,
+    &quot;npm.spacetime:cli.executor&quot;: &quot;Run&quot;,
+    &quot;npm.spacetime:docker.executor&quot;: &quot;Run&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\eelwo\\GitHub\\spacetimedb-turbo-starter\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="sdb &gt; spacetime:build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/sdb/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="spacetime:build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="sdb &gt; spacetime:generate" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/sdb/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="spacetime:generate" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -131,6 +122,8 @@
       <list>
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.spacetime:docker" />
+        <item itemvalue="npm.sdb &gt; spacetime:generate" />
+        <item itemvalue="npm.sdb &gt; spacetime:build" />
         <item itemvalue="npm.spacetime:cli" />
       </list>
     </recent_temporary>
@@ -151,16 +144,33 @@
       <option name="presentableId" value="Default" />
       <updated>1741852641150</updated>
       <workItem from="1741852642224" duration="921000" />
+      <workItem from="1741853581764" duration="6490000" />
+      <workItem from="1741896145742" duration="3110000" />
     </task>
+    <task id="LOCAL-00001" summary="Moved apps/server to packages/sdb. Hooked up basic client.">
+      <option name="closed" value="true" />
+      <created>1741853643155</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741853643155</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="additionalRoots">
+      <list>
+        <option value="$PROJECT_DIR$/packages/sdb/spacetime-autogen" />
+      </list>
+    </option>
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="package.json" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Moved apps/server to packages/sdb. Hooked up basic client." />
     <option name="LAST_COMMIT_MESSAGE" value="Moved apps/server to packages/sdb. Hooked up basic client." />
   </component>
