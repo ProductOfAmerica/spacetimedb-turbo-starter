@@ -1,0 +1,30 @@
+{
+	"name": "turbo-starter",
+	"private": true,
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"publish": "turbo run publish",
+		"clean": "turbo run clean && rm -rf node_modules",
+		"format-write": "biome format --write .",
+		"lint": "biome check .",
+		"lint:fix": "biome check . --write",
+		"check-types": "turbo check-types",
+		"docker": "docker-compose down --remove-orphans --volumes && docker container prune -f && docker-compose up --build -d",
+		"docker:build": "docker-compose -f docker-compose.yml build"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "workspace:*",
+		"@biomejs/biome": "catalog:",
+		"turbo": "catalog:",
+		"typescript": "catalog:"
+	},
+	"packageManager": "pnpm@10.6.2",
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"volta": {
+		"node": "22.12.0",
+		"pnpm": "10.6.2"
+	}
+}

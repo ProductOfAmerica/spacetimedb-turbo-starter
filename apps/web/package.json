@@ -1,0 +1,26 @@
+{
+	"name": "web",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"check-types": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/ui": "workspace:*",
+		"next": "catalog:",
+		"react": "catalog:react18",
+		"react-dom": "catalog:react18",
+		"sharp": "catalog:react18"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "workspace:*",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:react18",
+		"@types/react-dom": "catalog:react18",
+		"postcss": "catalog:styling",
+		"typescript": "catalog:"
+	}
+}
