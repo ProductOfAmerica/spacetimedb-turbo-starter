@@ -64,7 +64,7 @@
 		"zod": "catalog:form"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "workspace:*",
+		"@repo/ts-config": "workspace:*",
 		"@types/node": "catalog:",
 		"@types/react": "catalog:react18",
 		"@types/react-dom": "catalog:react18",

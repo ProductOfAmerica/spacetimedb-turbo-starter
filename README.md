@@ -6,10 +6,10 @@ A modern, turbocharged monorepo template for building Next.js apps with ease. Pa
 **Shadcn UI**, and **Biome.js**, this starter is your shortcut to a fast, scalable, and beautiful web project—all
 wrapped in a Docker-friendly setup.
 
-[![Stars](https://img.shields.io/github/stars/ProductOfAmerica/turbo-starter?style=social)](https://github.com/ProductOfAmerica/turbo-starter)
+[![Stars](https://img.shields.io/github/stars/ProductOfAmerica/spacetimedb-turbo-starter?style=social)](https://github.com/ProductOfAmerica/turbo-starter)
 [![Node.js](https://img.shields.io/badge/Node.js-v22.12.0+-green)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-v10.6.2-orange)](https://pnpm.io/)
-[![Build Status](https://github.com/ProductOfAmerica/turbo-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/ProductOfAmerica/turbo-starter/actions)
+[![Build Status](https://github.com/ProductOfAmerica/spacetimedb-turbo-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/ProductOfAmerica/turbo-starter/actions)
 
 ---
 
@@ -33,7 +33,7 @@ Perfect for developers who want a cutting-edge stack without the setup hassle.
 │   └── web/                # Next.js 15 app
 ├── packages/
 │   ├── ui/                 # Shadcn UI components & utilities
-│   └── typescript-config   # Shared TypeScript settings
+│   └── ts-config   # Shared TypeScript settings
 ├── docker-compose.yml      # Docker setup
 ├── turbo.json              # Turborepo config
 └── pnpm-workspace.yaml     # Workspace definitions
@@ -52,8 +52,8 @@ Perfect for developers who want a cutting-edge stack without the setup hassle.
 ### Setup
 
 ```bash
-git clone https://github.com/ProductOfAmerica/turbo-starter.git
-cd turbo-starter
+git clone https://github.com/ProductOfAmerica/spacetimedb-turbo-starter.git
+cd spacetimedb-turbo-starter
 pnpm install
 ```
 
@@ -106,7 +106,7 @@ pnpm lint:fix     # Auto-fix issues
 
 Love this starter? Star it, fork it, or submit a PR! Let’s make it even better together.
 
-- [Issues](https://github.com/ProductOfAmerica/turbo-starter/issues)
+- [Issues](https://github.com/ProductOfAmerica/spacetimedb-turbo-starter/issues)
 - [Docs](https://turbo.build/repo/docs)
 
 ---

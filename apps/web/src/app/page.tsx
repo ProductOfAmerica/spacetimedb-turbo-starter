@@ -1,79 +1,248 @@
-import { Button } from '@repo/ui/components/ui/button';
-import Image, { type ImageProps } from 'next/image';
+'use client';
 
-import styles from './page.module.css';
+import type { ErrorContextInterface, Identity } from '@clockworklabs/spacetimedb-sdk';
+import { DbConnection, type EventContext, type Message, type User } from '@repo/sdb';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
-type Props = Omit<ImageProps, 'src'> & {
-	srcLight: string;
-	srcDark: string;
+type PrettyMessage = {
+	id: string;
+	senderName: string;
+	text: string;
 };
 
-const ThemeImage = (props: Props) => {
-	const { srcLight, srcDark, ...rest } = props;
+function useMessages(conn: DbConnection | null): Message[] {
+	const [messages, setMessages] = useState<Message[]>([]);
 
-	return (
-		<>
-			<Image {...rest} src={srcLight} className="imgLight" />
-			<Image {...rest} src={srcDark} className="imgDark" />
-		</>
-	);
-};
+	useEffect(() => {
+		if (!conn) return;
+		const onInsert = (_ctx: EventContext, message: Message) => {
+			setMessages((prev) => [...prev, message]);
+		};
+		conn.db.message.onInsert(onInsert);
+
+		const onDelete = (_ctx: EventContext, message: Message) => {
+			setMessages((prev) =>
+				prev.filter((m) => m.text !== message.text && m.sent !== message.sent && m.sender !== message.sender)
+			);
+		};
+		conn.db.message.onDelete(onDelete);
+
+		return () => {
+			conn.db.message.removeOnInsert(onInsert);
+			conn.db.message.removeOnDelete(onDelete);
+		};
+	}, [conn]);
+
+	return messages;
+}
+
+function useUsers(conn: DbConnection | null): Map<string, User> {
+	const [users, setUsers] = useState<Map<string, User>>(new Map());
+
+	useEffect(() => {
+		if (!conn) return;
+		const onInsert = (_ctx: EventContext, user: User) => {
+			setUsers((prev) => new Map(prev.set(user.identity.toHexString(), user)));
+		};
+		conn.db.user.onInsert(onInsert);
+
+		const onUpdate = (_ctx: EventContext, oldUser: User, newUser: User) => {
+			setUsers((prev) => {
+				prev.delete(oldUser.identity.toHexString());
+				return new Map(prev.set(newUser.identity.toHexString(), newUser));
+			});
+		};
+		conn.db.user.onUpdate(onUpdate);
+
+		const onDelete = (_ctx: EventContext, user: User) => {
+			setUsers((prev) => {
+				prev.delete(user.identity.toHexString());
+				return new Map(prev);
+			});
+		};
+		conn.db.user.onDelete(onDelete);
+
+		return () => {
+			conn.db.user.removeOnInsert(onInsert);
+			conn.db.user.removeOnUpdate(onUpdate);
+			conn.db.user.removeOnDelete(onDelete);
+		};
+	}, [conn]);
+
+	return users;
+}
 
 export default function Home() {
-	return (
-		<div className={styles.page}>
-			<main className={styles.main}>
-				<ThemeImage
-					className={styles.logo}
-					srcLight="turborepo-dark.svg"
-					srcDark="turborepo-light.svg"
-					alt="Turborepo logo"
-					width={180}
-					height={38}
-					priority
-				/>
-				<ol>
-					<li>
-						Get started by editing <code>apps/web/app/page.tsx</code>
-					</li>
-					<li>Save and see your changes instantly.</li>
-				</ol>
+	const [connected, setConnected] = useState<boolean>(false);
+	const [identity, setIdentity] = useState<Identity | null>(null);
+	const [conn, setConn] = useState<DbConnection | null>(null);
+	const [newName, setNewName] = useState('');
+	const [settingName, setSettingName] = useState(false);
+	const [systemMessage, setSystemMessage] = useState('');
+	const [newMessage, setNewMessage] = useState('');
 
-				<div className={styles.ctas}>
-					<a
-						className={styles.primary}
-						href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Image className={styles.logo} src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />
-						Deploy now
-					</a>
-					<a
-						href="https://turbo.build/repo/docs?utm_source"
-						target="_blank"
-						rel="noopener noreferrer"
-						className={styles.secondary}
-					>
-						Read our docs
-					</a>
+	const messages = useMessages(conn);
+	const users = useUsers(conn);
+
+	const prettyMessages: PrettyMessage[] = messages
+		.sort((a, b) => (a.sent > b.sent ? 1 : -1))
+		.map((message) => ({
+			id: window.crypto.randomUUID(),
+			senderName: users.get(message.sender.toHexString())?.name || message.sender.toHexString().substring(0, 8),
+			text: message.text,
+		}));
+
+	const name = identity
+		? users.get(identity.toHexString())?.name || identity.toHexString().substring(0, 8)
+		: 'unknown';
+
+	const onSubmitNewName = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setSettingName(false);
+		conn?.reducers.setName(newName);
+	};
+
+	const onMessageSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setNewMessage('');
+		conn?.reducers.sendMessage(newMessage);
+	};
+
+	useEffect(() => {
+		const subscribeToQueries = (conn: DbConnection, queries: string[]) => {
+			let count = 0;
+			for (const query of queries) {
+				conn
+					?.subscriptionBuilder()
+					.onApplied(() => {
+						count++;
+						if (count === queries.length) {
+							console.log('SDK client cache initialized.');
+						}
+					})
+					.subscribe(query);
+			}
+		};
+
+		const onConnect = (conn: DbConnection, identity: Identity, token: string) => {
+			setIdentity(identity);
+			setConnected(true);
+			localStorage.setItem('auth_token', token);
+			console.log('Connected to SpacetimeDB with identity:', identity.toHexString());
+			conn.reducers.onSendMessage(() => {
+				console.log('Message sent.');
+			});
+
+			subscribeToQueries(conn, ['SELECT * FROM message', 'SELECT * FROM user']);
+		};
+
+		const onDisconnect = () => {
+			console.log('Disconnected from SpacetimeDB');
+			setConnected(false);
+		};
+
+		const onConnectError = (ctx: ErrorContextInterface, err: Error) => {
+			console.log('Error connecting to SpacetimeDB:', err);
+		};
+
+		setConn(
+			DbConnection.builder()
+				.withUri('ws://localhost:3000')
+				.withModuleName('sdb')
+				.withToken(localStorage.getItem('auth_token') || '')
+				.onConnect(onConnect)
+				.onDisconnect(onDisconnect)
+				.onConnectError(onConnectError)
+				.build()
+		);
+	}, []);
+
+	useEffect(() => {
+		if (!conn) return;
+		conn.db.user.onInsert((_ctx, user) => {
+			if (user.online) {
+				const name = user.name || user.identity.toHexString().substring(0, 8);
+				setSystemMessage((prev) => `${prev}\n${name} has connected.`);
+			}
+		});
+		conn.db.user.onUpdate((_ctx, oldUser, newUser) => {
+			const name = newUser.name || newUser.identity.toHexString().substring(0, 8);
+			if (!oldUser.online && newUser.online) {
+				setSystemMessage((prev) => `${prev}\n${name} has connected.`);
+			} else if (oldUser.online && !newUser.online) {
+				setSystemMessage((prev) => `${prev}\n${name} has disconnected.`);
+			}
+		});
+	}, [conn]);
+
+	if (!conn || !connected || !identity) {
+		return (
+			<div className="App">
+				<h1>Connecting...</h1>
+			</div>
+		);
+	}
+
+	return (
+		<div className="App">
+			<div className="profile">
+				<h1>Profile</h1>
+				{!settingName ? (
+					<>
+						<p>{name}</p>
+						<button
+							type="button"
+							onClick={() => {
+								setSettingName(true);
+								setNewName(name);
+							}}
+						>
+							Edit Name
+						</button>
+					</>
+				) : (
+					<form onSubmit={onSubmitNewName}>
+						<input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
+						<button type="submit">Submit</button>
+					</form>
+				)}
+			</div>
+			<div className="message">
+				<h1>Messages</h1>
+				{prettyMessages.length < 1 && <p>No messages</p>}
+				<div>
+					{prettyMessages.map((message) => (
+						<div key={message.id}>
+							<p>
+								<b>{message.senderName}</b>
+							</p>
+							<p>{message.text}</p>
+						</div>
+					))}
 				</div>
-				<Button className={styles.secondary}>Open alert</Button>
-			</main>
-			<footer className={styles.footer}>
-				<a
-					href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
+			</div>
+			<div className="system" style={{ whiteSpace: 'pre-wrap' }}>
+				<h1>System</h1>
+				<div>
+					<p>{systemMessage}</p>
+				</div>
+			</div>
+			<div className="new-message">
+				<form
+					onSubmit={onMessageSubmit}
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						width: '50%',
+						margin: '0 auto',
+					}}
 				>
-					<Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-					Examples
-				</a>
-				<a href="https://turbo.build?utm_source=create-turbo" target="_blank" rel="noopener noreferrer">
-					<Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-					Go to turbo.build →
-				</a>
-			</footer>
+					<h3>New Message</h3>
+					<textarea value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+					<button type="submit">Send</button>
+				</form>
+			</div>
 		</div>
 	);
 }

@@ -67,6 +67,16 @@
 					}
 				}
 			}
+		},
+		{
+			"include": ["packages/sdb/spacetime-autogen/**", "./spacetime-autogen/**"],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noBannedTypes": "off"
+					}
+				}
+			}
 		}
 	]
 }

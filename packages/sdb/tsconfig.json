@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/ts-config/react-library.json", // Match /packages/ui
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "@repo/sdb/*": ["./spacetime-autogen/*"]
+    }
+  },
+  "include": ["spacetime-autogen/**/*.ts"],
+  "exclude": ["node_modules", "dist", "target", ".turbo"]
+}

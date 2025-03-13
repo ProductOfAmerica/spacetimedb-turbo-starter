@@ -1,0 +1,25 @@
+{
+	"name": "@repo/sdb",
+	"version": "1.0.0",
+	"private": true,
+	"main": "./spacetime-autogen/index.ts",
+	"types": "./spacetime-autogen/index.ts",
+	"exports": {
+		".": "./spacetime-autogen/index.ts",
+		"./*": "./spacetime-autogen/*"
+	},
+	"scripts": {
+		"spacetime": "spacetime start",
+		"spacetime:docker": "docker run -d --rm --pull always -p 3000:3000 clockworklabs/spacetime start",
+		"bpg": "pnpm run build && pnpm run publish:local && pnpm run generate",
+		"build": "spacetime build",
+		"publish:local": "spacetime publish --server local sdb",
+		"publish:cloud": "spacetime login && spacetime publish sdb",
+		"generate": "spacetime generate --lang typescript --out-dir ./spacetime-autogen && biome check ./spacetime-autogen --write",
+		"logs": "spacetime logs sdb",
+		"check-types": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@clockworklabs/spacetimedb-sdk": "^1.0.2"
+	}
+}

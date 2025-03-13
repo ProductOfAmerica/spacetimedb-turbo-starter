@@ -3,12 +3,14 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbopack",
+		"dev": "next dev --turbopack -p 3001",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start -p 3001",
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@repo/sdb": "workspace:*",
+		"@clockworklabs/spacetimedb-sdk": "^1.0.2",
 		"@repo/ui": "workspace:*",
 		"next": "catalog:",
 		"react": "catalog:react18",
@@ -16,7 +18,7 @@
 		"sharp": "catalog:react18"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "workspace:*",
+		"@repo/ts-config": "workspace:*",
 		"@types/node": "catalog:",
 		"@types/react": "catalog:react18",
 		"@types/react-dom": "catalog:react18",
